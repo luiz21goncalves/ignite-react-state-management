@@ -1,8 +1,9 @@
 import { useId } from 'react'
-import { useSelector } from 'react-redux'
+
+import { useAppSelector } from '../store'
 
 export function TodoList() {
-  const todos = useSelector((store) => store.todo)
+  const todos = useAppSelector((store) => store.todo)
   const id = useId()
 
   return (

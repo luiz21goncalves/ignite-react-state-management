@@ -1,3 +1,5 @@
+import { TypedUseSelectorHook, useSelector } from 'react-redux'
+
 import { configureStore, createSlice } from '@reduxjs/toolkit'
 
 const todoSlice = createSlice({
@@ -17,3 +19,7 @@ export const store = configureStore({
     todo: todoSlice.reducer,
   },
 })
+
+export type RootState = ReturnType<typeof store.getState>
+
+export const useAppSelector: TypedUseSelectorHook<RootState> = useSelector

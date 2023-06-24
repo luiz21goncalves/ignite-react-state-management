@@ -10,7 +10,16 @@ export function AddTodo() {
   function handleAddTodo(event: FormEvent) {
     event.preventDefault()
 
-    dispatch(add({ newTodo }))
+    const parsedContent = newTodo.trim()
+    const isValidContent = parsedContent.length >= 1
+
+    if (isValidContent) {
+      setNewTodo('')
+      return dispatch(add({ newTodo: parsedContent }))
+    }
+
+    alert('Adicione conteudo para adicionar um to-do.')
+    setNewTodo('')
   }
 
   function onChangeNewTodo(event: ChangeEvent<HTMLInputElement>) {
