@@ -1,3 +1,11 @@
+import { AddTodo } from './components/AddTodo'
+import { TodoList } from './components/TodoList'
+
 export function App() {
-  return <h1>React state management</h1>
+  return (
+    <div>
+      <AddTodo />
+      <TodoList />
+    </div>
+  )
 }
