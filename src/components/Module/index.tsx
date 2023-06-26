@@ -28,8 +28,10 @@ export function Module(props: ModuleProps) {
 
   const dispatch = useDispatch()
 
+  const isOpen = moduleIndex === 0
+
   return (
-    <Collapsible.Root className="group">
+    <Collapsible.Root className="group" defaultOpen={isOpen}>
       <Collapsible.Trigger className="flex w-full items-center gap-3 bg-zinc-800 p-4">
         <div className="flex h-10 w-10 items-center justify-center rounded-full bg-zinc-950 text-sm">
           {moduleIndex + 1}
