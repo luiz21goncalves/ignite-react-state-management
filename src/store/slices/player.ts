@@ -19,12 +19,14 @@ export type PlayerState = {
   currentModuleIndex: number
   currentLessonIndex: number
   course: Course | null
+  isLoading: boolean
 }
 
 const initialState: PlayerState = {
   course: null,
   currentModuleIndex: 0,
   currentLessonIndex: 0,
+  isLoading: true,
 }
 
 export const loadCourse = createAsyncThunk('player/load', async () => {
@@ -67,8 +69,12 @@ const playerSlice = createSlice({
     },
   },
   extraReducers: (builder) => {
+    builder.addCase(loadCourse.pending, (store) => {
+      store.isLoading = true
+    })
     builder.addCase(loadCourse.fulfilled, (store, action) => {
       store.course = action.payload.course
+      store.isLoading = false
     })
   },
 })
