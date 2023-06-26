@@ -12,7 +12,7 @@
     "test": "vitest run",
     "test:watch": "vitest",
     "test:cov": "vitest run --coverage",
-    "server": "json-server server.json -w -d 500 -p 3333"
+    "server": "json-server server.json -w -d 1000 -p 3333"
   },
   "dependencies": {
     "@radix-ui/react-collapsible": "1.0.3",

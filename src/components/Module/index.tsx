@@ -17,7 +17,7 @@ export function Module(props: ModuleProps) {
   const { amountOfLessons, title, moduleIndex } = props
 
   const lessons = useAppSelector((store) => {
-    return store.player.course.modules[moduleIndex].lessons
+    return store.player.course?.modules?.[moduleIndex]?.lessons
   })
 
   const { currentLessonIndex, currentModuleIndex } = useAppSelector((store) => {
@@ -47,7 +47,7 @@ export function Module(props: ModuleProps) {
 
       <Collapsible.Content>
         <nav className="relative flex flex-col gap-4 p-6">
-          {lessons.map((lesson, lessonIndex) => {
+          {lessons?.map((lesson, lessonIndex) => {
             function handlePlayLesson() {
               dispatch(
                 play({

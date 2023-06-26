@@ -18,8 +18,8 @@ export const useCurrentModuleAndLesson = () => {
   return useAppSelector((store) => {
     const { currentLessonIndex, currentModuleIndex } = store.player
 
-    const currentModule = store.player.course.modules[currentModuleIndex]
-    const currentLesson = currentModule.lessons[currentLessonIndex]
+    const currentModule = store.player.course?.modules[currentModuleIndex]
+    const currentLesson = currentModule?.lessons[currentLessonIndex]
 
     return { currentLesson, currentModule }
   })

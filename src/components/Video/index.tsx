@@ -8,8 +8,8 @@ export function Video() {
   const lesson = useAppSelector((store) => {
     const { currentLessonIndex, currentModuleIndex } = store.player
 
-    const currentModule = store.player.course.modules[currentModuleIndex]
-    const currentLesson = currentModule.lessons[currentLessonIndex]
+    const currentModule = store.player.course?.modules?.[currentModuleIndex]
+    const currentLesson = currentModule?.lessons?.[currentLessonIndex]
 
     return currentLesson
   })
@@ -18,6 +18,10 @@ export function Video() {
 
   function handlePlayNext() {
     dispatch(next())
+  }
+
+  if (!lesson) {
+    return null
   }
 
   const url = `https://www.youtube.com/watch?v=${lesson.id}`
