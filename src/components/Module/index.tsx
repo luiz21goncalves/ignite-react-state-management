@@ -20,6 +20,12 @@ export function Module(props: ModuleProps) {
     return store.player.course.modules[moduleIndex].lessons
   })
 
+  const { currentLessonIndex, currentModuleIndex } = useAppSelector((store) => {
+    const { currentLessonIndex, currentModuleIndex } = store.player
+
+    return { currentLessonIndex, currentModuleIndex }
+  })
+
   const dispatch = useDispatch()
 
   return (
@@ -49,12 +55,17 @@ export function Module(props: ModuleProps) {
               )
             }
 
+            const isCurrentLesson =
+              currentModuleIndex === moduleIndex &&
+              currentLessonIndex === lessonIndex
+
             return (
               <Lesson
                 key={lesson.id}
                 title={lesson.title}
                 duration={lesson.duration}
                 onPlay={handlePlayLesson}
+                isCurrent={isCurrentLesson}
               />
             )
           })}
