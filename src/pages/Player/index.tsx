@@ -5,16 +5,17 @@ import { MessageCircle } from 'lucide-react'
 import { Header } from '../../components/Header'
 import { Module } from '../../components/Module'
 import { Video } from '../../components/Video'
-import { useAppDispatch, useAppSelector } from '../../store'
-import { loadCourse } from '../../store/slices/player'
+import { usePlayerStore } from '../../store'
 
 export function Player() {
-  const dispatch = useAppDispatch()
-  const modules = useAppSelector((store) => store.player.course?.modules)
+  const { modules, load } = usePlayerStore((store) => {
+    const { course, load } = store
+    return { modules: course?.modules, load }
+  })
 
   useEffect(() => {
-    dispatch(loadCourse())
-  }, [dispatch])
+    load()
+  }, [load])
 
   return (
     <div className="flex h-screen items-center  justify-center bg-zinc-950 text-zinc-50">
